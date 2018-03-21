@@ -23,7 +23,7 @@ The app allows users to manage their profile. On the home page, the user can typ
 Once logged in, the user can edit his name, his date of birth and sees where he has been geolocated.
 All the data is stored in the local storage.
 
-**Note :** As it was intended to be a web app, the Cordova plugins were not used. The app uses the *navigator.geolocation* with the parameter *enableHighAccuracy* set to true but this one may not be always accurate. For mobile applications, the Cordova plugin can be used and is more accurate.
+**Note :** As it was intended to be a web app, the Cordova plugins were not used. The app uses the *navigator.geolocation* with the parameter *enableHighAccuracy* set to true but this one may not be always accurate. For mobile applications, the Cordova geolocation plugin, more accurate, could be used.
 
 ## Improvements
 
