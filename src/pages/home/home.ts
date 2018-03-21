@@ -7,6 +7,7 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  email: string = "";
 
   constructor(public navCtrl: NavController) {
     
@@ -16,7 +17,7 @@ export class HomePage {
     Simply open the profile page
   */
   openProfilePage() {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.push(ProfilePage, {email: this.email});
   }
 
 }

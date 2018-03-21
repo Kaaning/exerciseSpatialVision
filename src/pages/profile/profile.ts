@@ -26,22 +26,20 @@ export class ProfilePage {
     public navParams: NavParams,
     private storage: Storage
   ) {
-    this.storage.get('user')
+    let email = navParams.get("email"); //Retrieve the email from params
+    this.storage.get("users") //Get the users collection
       .then((data) => {
-        if(data) { //If a user has been created, get his details and show his position
-          this.user = data;
-          this.loadMap();
-          this.showUserPosition();
+        if(data) { //If at least one user has been created, the collection exists and we can check if the provided email already exists
+          if(data[email]) { //If it does, we get the user details
+            this.user = data[email];
+            this.loadMap();
+          }
         }
-        else this.toggleEditMode(); //If no user has been created yet, enable edit mode
+        if(!this.user.email) { //If no user has been returned (because the collection does not exist yet or because the user does not exist)
+          this.user.email = email; //We assign the provided email to the empty user
+          this.toggleEditMode(); //And we enable the edit mode
+        }
       });
-  }
-
-  ionViewDidLoad(){
-    if( this.user ) {
-      console.log(this.user);
-      
-    }
   }
   
   /*
@@ -53,8 +51,7 @@ export class ProfilePage {
         this.user.latitude = position.coords.latitude;
         this.user.longitude = position.coords.longitude;
         this.loadMap();
-        this.showUserPosition();
-      });
+      }, null, {enableHighAccuracy: true});
     } else {
       alert("Geolocation is not supported by this browser. Please use another one.");
     }
@@ -74,7 +71,8 @@ export class ProfilePage {
     }
  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    console.log(this.map);
+    
+    this.showUserPosition();
  
   }
 
@@ -96,8 +94,16 @@ export class ProfilePage {
     Save current user details
   */
   saveUser() {
-    this.storage.set('user', this.user);
-    this.toggleEditMode();
+    let users;
+    this.storage.get("users") //We get the users collection
+      .then((data) => {
+        if(data) users = data;
+        else users = {}; //If it does not exist yet, we initialise it
+
+        users[this.user.email] = this.user; //We then add the new user to the collection
+        this.storage.set('users', users); //And save the collection
+        this.toggleEditMode();
+      });
   }
 
   /*

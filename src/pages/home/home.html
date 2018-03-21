@@ -10,6 +10,13 @@
 
   <p>Welcome to the ExerciseApp !</p>
 
-  <button ion-button (click)="openProfilePage()">Manage my profile</button>
+  <p>To manage your existing profile or create a new one, please enter your email address below :</p>
+
+  <ion-item>
+    <ion-label floating>Email address</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <button ion-button (click)="openProfilePage()" class="action-button" [disabled]="!email">Manage my profile</button>
 
 </ion-content>
