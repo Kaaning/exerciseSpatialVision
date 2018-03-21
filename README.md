@@ -6,4 +6,5 @@ The app can be accessed here : https://wvitali.github.io/exerciseSpatialVision/
 
 As it was intended to be a web app, Cordova plugins were not used.
 
-The src folder contains all the source files.
+You can get the source files in the src folder and all the project files by downloading the exercise.rar
+Once extracted, you will need to run npm install.
