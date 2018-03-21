@@ -9,7 +9,7 @@ It has been made with Ionic 3.9.2
 
 ## Sources
 
-You can get the source files in the src folder and all the project files by downloading the exercise.rar
+You can get the source files in the src folder and all the project files by downloading the exercise.zip
 
 Once extracted, you will need to run npm install.
 
