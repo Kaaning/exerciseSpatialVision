@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="user.name" [disabled]="!editMode"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Email address</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" [disabled]="!editMode"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Date of birth</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="user.dateOfBirth" [disabled]="!editMode"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
+  
+  <div #map id="map"></div> 
+
+  <button ion-button (click)="toggleEditMode()" class="action-button" *ngIf="!editMode">Edit</button>
+  <button ion-button (click)="saveUser()" class="action-button" *ngIf="editMode">Save</button>
+
+  
+    
+  
+</ion-content>
